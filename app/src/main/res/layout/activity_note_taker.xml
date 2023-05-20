@@ -32,28 +32,60 @@
                 android:layout_height="?attr/actionBarSize"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-
     <EditText
         android:id="@+id/editText_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_notes"
-        android:hint="Title"
+        android:hint="Title."
         android:padding="8dp"
+        android:textStyle="bold"
         android:singleLine="true"
-        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/editText_notes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="187dp"
         android:layout_below="@+id/editText_title"
+        android:layout_marginTop="7dp"
         android:hint="Notes. "
         android:padding="8dp"
-        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/btnDate"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="466dp"
+        android:text="date" />
+
+    <Button
+        android:id="@+id/btnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="249dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="466dp"
+        android:text="Time" />
+
+    <Button
+        android:id="@+id/button_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="153dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="352dp"
+        android:text="set " />
 
 </RelativeLayout>
