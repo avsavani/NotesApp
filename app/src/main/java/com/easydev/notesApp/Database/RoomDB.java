@@ -7,12 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.easydev.notesApp.Models.Notes;
+import com.easydev.notesApp.Models.Reminder;
 import com.easydev.notesApp.Models.Users;
 
-@Database(entities = {Notes.class, Users.class}, version = 7, exportSchema = false)
+@Database(entities = {Notes.class, Users.class, Reminder.class}, version = 7, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
-    private static String DATABASE_NAME = "NoteKeeper";
+    private static String DATABASE_NAME = "NotesApp";
 
     public synchronized static RoomDB getInstance(Context context){
         if (database == null){
@@ -27,4 +28,6 @@ public abstract class RoomDB extends RoomDatabase {
 
     public abstract MainDAO mainDAO();
     public abstract UserDAO userDAO();
+    public abstract ReminderDAO reminderDAO();
+
 }
