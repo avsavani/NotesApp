@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notekeeper">
         <activity
-            android:name="com.easydev.notesApp.NoteTakerActivity"
+            android:name=".NotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoteTakerActivity"
             android:exported="true" />
         <activity
-            android:name="com.easydev.notesApp.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

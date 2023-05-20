@@ -7,8 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.easydev.notesApp.Models.Notes;
+import com.easydev.notesApp.Models.Users;
 
-@Database(entities = {Notes.class}, version = 4, exportSchema = false)
+@Database(entities = {Notes.class, Users.class}, version = 7, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static String DATABASE_NAME = "NoteKeeper";
@@ -20,23 +21,10 @@ public abstract class RoomDB extends RoomDatabase {
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();
-
-            /*//adding demo data
-            Notes note1 = new Notes();
-            Notes note2 = new Notes();
-            Notes note3 = new Notes();
-            note1.setTitle("Your title");
-            note1.setNotes("Your description here!");
-            note2.setTitle("Create a new note");
-            note2.setNotes("You can edit this note or also make a new note by clicking on the \"plus\" button below.");
-            note3.setTitle("Task name");
-            note3.setNotes("Things to do!");
-            database.mainDAO().insert(note1);
-            database.mainDAO().insert(note2);
-            database.mainDAO().insert(note3);*/
         }
         return database;
     }
 
     public abstract MainDAO mainDAO();
+    public abstract UserDAO userDAO();
 }
