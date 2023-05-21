@@ -22,8 +22,14 @@ public interface UserDAO {
     @Delete
     void reset(List<Users> usersList);
 
-    @Query("UPDATE users SET name = :name, email = :email, password= :password WHERE ID = :id")
-    void update(int id, String name, String email, String password);
+    @Query("SELECT EXISTS(SELECT * from Users where name=:name)")
+    boolean is_taken_name(String name);
+
+    @Query("SELECT EXISTS(SELECT * from Users where email=:email)")
+    boolean is_taken_email(String email);
+
+    @Query("SELECT EXISTS(SELECT * from Users where name=:name AND password=:password)")
+    boolean login(String name,String password);
 
     @Query("SELECT * FROM notes ORDER BY id DESC")
     List<Users> getAll();
