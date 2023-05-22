@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "reminder")
 public class Reminder {
     @PrimaryKey(autoGenerate = true)
-    int ID = 0;
+    public int reminderID = 0;
 
     @ColumnInfo(name = "note")
     String note = "";
@@ -19,11 +19,11 @@ public class Reminder {
     String date = "";
 
     public int getID() {
-        return ID;
+        return reminderID;
     }
 
     public void setID(int ID) {
-        this.ID = ID;
+        this.reminderID = ID;
     }
 
     public String getNote() {

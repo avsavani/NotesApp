@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     RoomDB database;
     EditText password,name,email;
     Users user;
+    SharedPrefManager sharedPrefManager;
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String LAYOUT = "layout";
@@ -32,11 +33,14 @@ public class LoginActivity extends AppCompatActivity {
 //        email = findViewById(R.id.email);
 
         user = new Users();
+
+        sharedPrefManager= new SharedPrefManager(getApplicationContext());
     }
     public void signupBtn(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
     public void loginBtn(View view){
 
         String getPass = password.getText().toString();
@@ -47,13 +51,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+
         user = new Users();
 //        user.setEmail(getMail);
         user.setName(getName);
         user.setPassword(getPass);
 
-        if(database.userDAO().login(getName ,getPass)  ){
+        if(database.userDAO().login(getName ,getPass)){
 
+            sharedPrefManager.SaveUser(user);
             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NotesActivity.class);
             startActivity(intent);
@@ -63,5 +69,16 @@ public class LoginActivity extends AppCompatActivity {
         }else{
             Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(sharedPrefManager.isLoggedIn()){
+            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, NotesActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

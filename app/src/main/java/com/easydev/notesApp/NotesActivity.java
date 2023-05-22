@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.easydev.notesApp.Adapters.NotesListAdapter;
 import com.easydev.notesApp.Database.RoomDB;
+import com.easydev.notesApp.Database.UserDAO;
 import com.easydev.notesApp.Listeners.NoteClickListener;
 import com.easydev.notesApp.Models.Notes;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,6 +43,12 @@ public class NotesActivity extends AppCompatActivity implements PopupMenu.OnMenu
     Notes selectedNote;
     SearchView search_view_home;
     TextView textView_placeholder;
+    SharedPrefManager sharedPrefManager;
+    private static String SHARED_PREF_NAME="easydev";
+    private SharedPreferences sharedPreferences;
+    Context context;
+    private SharedPreferences.Editor editor;
+
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String LAYOUT = "layout";
@@ -92,6 +99,10 @@ public class NotesActivity extends AppCompatActivity implements PopupMenu.OnMenu
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.user:
+                        Intent intent1 = new Intent(NotesActivity.this, UserActivity.class);
+                        startActivity(intent1);
+                        return true;
                     case R.id.layout:
                         if (loadLayoutStyle().equals("linear")){
                             saveLayoutStyle("grid");
@@ -111,8 +122,9 @@ public class NotesActivity extends AppCompatActivity implements PopupMenu.OnMenu
                         Toast.makeText(NotesActivity.this, "Will be available soon!", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.logout:
-                        Intent intent = new Intent(NotesActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        logOut();
+//                        Intent intent = new Intent(NotesActivity.this, MainActivity.class);
+//                        startActivity(intent);
                         return true;
                 }
                 return false;
@@ -168,6 +180,7 @@ public class NotesActivity extends AppCompatActivity implements PopupMenu.OnMenu
             if(resultCode == Activity.RESULT_OK){
                 Notes new_note = (Notes) data.getSerializableExtra("note");
                 database.mainDAO().insert(new_note);
+//                database.userDAO().insertUserNotesref(new_note);
                 notes.clear();
                 notes.addAll(database.mainDAO().getAll());
                 notesListAdapter.notifyDataSetChanged();
@@ -253,5 +266,14 @@ public class NotesActivity extends AppCompatActivity implements PopupMenu.OnMenu
             default:
                 return false;
         }
+    }
+    void logOut(){
+        SharedPreferences blockSession = this.getSharedPreferences(SHARED_PREF_NAME, 0);
+        SharedPreferences.Editor blockEdit = blockSession.edit();
+        blockEdit.clear();
+        blockEdit.apply();
+        Intent intent = new Intent(NotesActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

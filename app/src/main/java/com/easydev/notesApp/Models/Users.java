@@ -9,23 +9,33 @@ import java.io.Serializable;
 @Entity(tableName = "users")
 public class Users implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    int ID = 0;
+    public int usersID = 0;
 
     @ColumnInfo(name = "name")
-    String name = "";
+    public String name = "";
 
     @ColumnInfo(name = "email")
-    String email = "";
+    public String email = "";
 
     @ColumnInfo(name = "password")
-    String password = "";
+    public String password = "";
+
+    public Users(int id, String name, String email) {
+        this.usersID =id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public Users() {
+
+    }
 
     public int getID() {
-        return ID;
+        return usersID;
     }
 
     public void setID(int ID) {
-        this.ID = ID;
+        this.usersID = ID;
     }
 
     public String getName() {

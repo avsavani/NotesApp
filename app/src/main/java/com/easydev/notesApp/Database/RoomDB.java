@@ -7,10 +7,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.easydev.notesApp.Models.Notes;
+import com.easydev.notesApp.Models.Relations.UsersNotesCrossref;
 import com.easydev.notesApp.Models.Reminder;
 import com.easydev.notesApp.Models.Users;
 
-@Database(entities = {Notes.class, Users.class, Reminder.class}, version = 7, exportSchema = false)
+@Database(entities = {Notes.class, Users.class, Reminder.class, UsersNotesCrossref.class}, version = 9, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static String DATABASE_NAME = "NotesApp";

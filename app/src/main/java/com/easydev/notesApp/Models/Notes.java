@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity(tableName = "notes")
 public class Notes implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    int ID = 0;
+    public int notesID = 0;
 
     @ColumnInfo(name = "title")
     String title = "";
@@ -36,11 +36,11 @@ public class Notes implements Serializable {
     }
 
     public int getID() {
-        return ID;
+        return notesID;
     }
 
     public void setID(int ID) {
-        this.ID = ID;
+        this.notesID = ID;
     }
 
     public String getTitle() {

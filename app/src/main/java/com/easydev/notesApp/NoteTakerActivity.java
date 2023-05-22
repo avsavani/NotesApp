@@ -55,6 +55,7 @@ public class NoteTakerActivity extends AppCompatActivity {
         reminder = new Reminder();
         note = new Notes();
 
+
         try {
             note = (Notes) getIntent().getSerializableExtra("old_note");
             editText_title.setText(note.getTitle());
@@ -188,6 +189,7 @@ public class NoteTakerActivity extends AppCompatActivity {
         reminder.setDate(title);
         reminder.setTime(date);
         reminder.setNote(time);
+
 
         database.reminderDAO().insert(reminder);                  //inserts the title,date,time into sql lite database
         Toast.makeText(getApplicationContext(), "reminder set", Toast.LENGTH_SHORT).show();
